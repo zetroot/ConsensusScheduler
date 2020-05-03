@@ -15,13 +15,13 @@ namespace Test.BizLogic.Aggregates
     /// </summary>
     public class BaseCrudAggregateTests
     {
-        private readonly Mock<IBaseCRUDRepository<BizTypeMock>> repoMock;
-
-        public BaseCrudAggregateTests()
+        private static Mock<IBaseCRUDRepository<BizTypeMock>> GetRepositoryMock()
         {
-            repoMock = new Mock<IBaseCRUDRepository<BizTypeMock>>(MockBehavior.Strict);
+            var repoMock = new Mock<IBaseCRUDRepository<BizTypeMock>>(MockBehavior.Strict);
             repoMock.Setup(repo => repo.GetAllAsync(It.IsAny<CancellationToken>())).Returns(() => Task.FromResult((new[] { new BizTypeMock() }).AsEnumerable()));
+            return repoMock;
         }
+
         /// <summary>
         /// ћок-тип дл€ тестировани€ базового агрегата
         /// </summary>
@@ -39,6 +39,7 @@ namespace Test.BizLogic.Aggregates
         public async Task GetAllInvokesGetAllFromRepo()
         {
             // arrange
+            var repoMock = GetRepositoryMock();
             var sut = new MockCrudAggregate(repoMock.Object);
 
             // act
@@ -46,6 +47,13 @@ namespace Test.BizLogic.Aggregates
 
             // assert
             repoMock.Verify(repo => repo.GetAllAsync(It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public void NullRepositoryThrowsException()
+        {
+            // a&a&a
+            Assert.Throws<ArgumentNullException>(() => new MockCrudAggregate(null));
         }
     }
 }
