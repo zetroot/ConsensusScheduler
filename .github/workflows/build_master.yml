@@ -22,13 +22,4 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
-    - name: Generate coverage report for bizlogic test project
-      run: |
-        cd ./test/Server/BizLogic/Test.BizLogic.Aggregates
-        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-    - name: Publish coverage report to coveralls.io
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./test/Server/BizLogic/Test.BizLogic.Aggregates/TestResults/coverage.info 
+      run: dotnet test --no-restore --verbosity normal    
