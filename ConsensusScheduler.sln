@@ -11,6 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C35554BE-B57
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsensusScheduler.BizLogic.Abstractions", "src\Server\BizLogic\ConsensusScheduler.BizLogic.Abstractions\ConsensusScheduler.BizLogic.Abstractions.csproj", "{C2D545A4-FE27-4D08-9DD1-6F002B644A3B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{281F0D61-734E-48F6-BB06-24F79C759E2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{D127034C-4800-43A3-9BB6-B000AC1B2B11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BizLogic", "BizLogic", "{78CB830F-35E7-41DE-BF90-01639AFD7A56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsensusScheduler.BizLogic.Aggregates", "src\Server\BizLogic\ConsensusScheduler.BizLogic.Aggregates\ConsensusScheduler.BizLogic.Aggregates.csproj", "{FEC211F7-5585-4807-B5D5-A7F50ED14A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.BizLogic.Aggregates", "test\Server\BizLogic\Test.BizLogic.Aggregates\Test.BizLogic.Aggregates.csproj", "{5C59D913-B814-42CC-B87E-3B03E8E6E832}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +31,14 @@ Global
 		{C2D545A4-FE27-4D08-9DD1-6F002B644A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2D545A4-FE27-4D08-9DD1-6F002B644A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2D545A4-FE27-4D08-9DD1-6F002B644A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC211F7-5585-4807-B5D5-A7F50ED14A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC211F7-5585-4807-B5D5-A7F50ED14A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC211F7-5585-4807-B5D5-A7F50ED14A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC211F7-5585-4807-B5D5-A7F50ED14A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C59D913-B814-42CC-B87E-3B03E8E6E832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C59D913-B814-42CC-B87E-3B03E8E6E832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C59D913-B814-42CC-B87E-3B03E8E6E832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C59D913-B814-42CC-B87E-3B03E8E6E832}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +47,10 @@ Global
 		{7147A87F-B56E-4F1E-BCCC-6DE38B544FE4} = {C35554BE-B570-42AD-893D-1155FB07007A}
 		{F9B9662F-7005-4FD9-BF96-AFDBD1720943} = {7147A87F-B56E-4F1E-BCCC-6DE38B544FE4}
 		{C2D545A4-FE27-4D08-9DD1-6F002B644A3B} = {F9B9662F-7005-4FD9-BF96-AFDBD1720943}
+		{D127034C-4800-43A3-9BB6-B000AC1B2B11} = {281F0D61-734E-48F6-BB06-24F79C759E2F}
+		{78CB830F-35E7-41DE-BF90-01639AFD7A56} = {D127034C-4800-43A3-9BB6-B000AC1B2B11}
+		{FEC211F7-5585-4807-B5D5-A7F50ED14A16} = {F9B9662F-7005-4FD9-BF96-AFDBD1720943}
+		{5C59D913-B814-42CC-B87E-3B03E8E6E832} = {78CB830F-35E7-41DE-BF90-01639AFD7A56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99AC84CF-A9D4-4B6C-9C94-2DB8ED9788A5}
