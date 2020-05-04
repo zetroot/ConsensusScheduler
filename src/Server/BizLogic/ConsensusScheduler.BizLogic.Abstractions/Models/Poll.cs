@@ -68,8 +68,16 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Models
         /// Копирующий конструктор
         /// </summary>
         /// <param name="origin">Сущность которую надо скопировать</param>
-        public Poll(Poll origin) : 
-            this(origin.ID, origin.Subject, origin.Description, origin.CreationDateTime, origin.DueDate, origin.Creator, origin.PollOptions)
-        { }
+        public Poll(Poll origin)            
+        {
+            if (origin == null) throw new ArgumentNullException(nameof(origin));
+            ID = origin.ID;
+            this.Subject = origin.Subject;
+            this.Description = origin.Description;
+            this.CreationDateTime = origin.CreationDateTime;
+            this.DueDate = origin.DueDate;
+            this.Creator = origin.Creator;
+            this.PollOptions = origin.PollOptions;
+        }
     }
 }

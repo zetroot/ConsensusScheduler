@@ -19,13 +19,21 @@ jobs:
         dotnet-version: 3.1.101
     - name: Install dependencies
       run: dotnet restore
-    - name: Generate coverage report for bizlogic test project
+    - name: Generate report for bizlogic aggregates test project
       run: |
         cd ./test/Server/BizLogic/Test.BizLogic.Aggregates
         dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-    - name: Publish coverage report to coveralls.io
+    - name: Generate report for bizlogic abstractions test project
+      run: |
+        cd ./test/Server/BizLogic/Test.BizLogic.Abstractions
+        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+    - name: Publish report for bizlogic aggregates test project
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: ./test/Server/BizLogic/Test.BizLogic.Aggregates/TestResults/coverage.info 
-
+    - name: Publish report for bizlogic abstractions test project
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./test/Server/BizLogic/Test.BizLogic.Abstractions/TestResults/coverage.info 
