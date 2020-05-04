@@ -4,6 +4,7 @@ using ConsensusScheduler.BizLogic.Aggregates;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using Xunit;
 
 namespace Test.BizLogic.Aggregates
 {
+    [ExcludeFromCodeCoverage]
     public class PollAggregateTests
     {
         private static Mock<IPollRepository> GetRepositoryMock()
@@ -42,7 +44,7 @@ namespace Test.BizLogic.Aggregates
             var sut = new PollAggregate(repoMock.Object);
 
             //act
-            await sut.GetAllByAuthorAsync(new SchedUser());
+            await sut.GetAllByAuthorAsync(new SchedUser(Guid.NewGuid(), ""));
 
             //assert
             repoMock.Verify(repo => repo.GetAllByAuthorAsync(It.IsAny<SchedUser>(), It.IsAny<CancellationToken>()), Times.Once);
@@ -56,7 +58,7 @@ namespace Test.BizLogic.Aggregates
             var sut = new PollAggregate(repoMock.Object);
 
             //act
-            await sut.GetAllByAuthorAsync(new SchedUser(), new CancellationTokenSource().Token);
+            await sut.GetAllByAuthorAsync(new SchedUser(Guid.NewGuid(), ""), new CancellationTokenSource().Token);
 
             //assert
             repoMock.Verify(repo => repo.GetAllByAuthorAsync(It.IsAny<SchedUser>(), It.IsAny<CancellationToken>()), Times.Once);

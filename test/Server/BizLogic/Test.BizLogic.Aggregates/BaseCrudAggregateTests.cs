@@ -3,6 +3,7 @@ using ConsensusScheduler.BizLogic.Abstractions.Interfaces.DALInterfaces;
 using ConsensusScheduler.BizLogic.Aggregates;
 using Moq;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Test.BizLogic.Aggregates
     /// <summary>
     /// “есты базового агрегата бизнеслогики
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class BaseCrudAggregateTests
     {
         private static Mock<IBaseCRUDRepository<BizTypeMock>> GetRepositoryMock()

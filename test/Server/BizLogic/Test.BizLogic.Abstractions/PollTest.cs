@@ -1,11 +1,13 @@
 using ConsensusScheduler.BizLogic.Abstractions.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Xunit;
 
 namespace Test.BizLogic.Abstractions
 {
+    [ExcludeFromCodeCoverage]
     public class PollTest
     {
         [Fact]
@@ -17,7 +19,7 @@ namespace Test.BizLogic.Abstractions
             var description = "description";
             var created = DateTime.Now;
             DateTime? due = null; 
-            var creator = new SchedUser();
+            var creator = new SchedUser(Guid.NewGuid(), "");
             var pollOptions = Enumerable.Empty<PollOption>();
 
             //act
@@ -45,7 +47,7 @@ namespace Test.BizLogic.Abstractions
             var description = "description";
             var created = DateTime.Now;
             DateTime? due = null;
-            var creator = new SchedUser();
+            var creator = new SchedUser(Guid.NewGuid(), "");
             var pollOptions = Enumerable.Empty<PollOption>();
 
             //act & assert
@@ -96,7 +98,7 @@ namespace Test.BizLogic.Abstractions
         public void CopyingCtorActuallyCreatesCopy()
         {
             // arrange
-            var poll_origin = new Poll(Guid.NewGuid(), "subject", "description", DateTime.Now, DateTime.UtcNow, new SchedUser(), Enumerable.Empty<PollOption>());
+            var poll_origin = new Poll(Guid.NewGuid(), "subject", "description", DateTime.Now, DateTime.UtcNow, new SchedUser(Guid.NewGuid(), ""), Enumerable.Empty<PollOption>());
 
             //act
             var poll_copied = new Poll(poll_origin);
@@ -124,7 +126,14 @@ namespace Test.BizLogic.Abstractions
             var pollOptions = new List<PollOption> { opt1, opt2, opt3 };
 
             //act
-            Poll poll = new Poll(id: Guid.NewGuid(), subject: "", description: "", creationDateTime: DateTime.Now, dueDate: null, creator: new SchedUser(), pollOptions: pollOptions);
+            Poll poll = new Poll(
+                id: Guid.NewGuid(),
+                subject: "",
+                description: "",
+                creationDateTime: DateTime.Now,
+                dueDate: null,
+                creator: new SchedUser(Guid.NewGuid(), ""),
+                pollOptions: pollOptions);
 
             // assert
             Assert.Collection(poll.PollOptions,
