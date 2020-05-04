@@ -18,9 +18,16 @@ namespace Test.BizLogic.Aggregates
             return repoMock;
         }
 
+        
+
         [Fact]
-        public void CtorFailsOnNullRepository()
+        public void AggregateRequiresNotNullRepository()
         {
+            var repo = GetRepositoryMock().Object;
+
+            var aggregate = new SchedUserAggregate(repo);
+
+            Assert.NotNull(aggregate);
             Assert.Throws<ArgumentNullException>(() => new SchedUserAggregate(null));
         }
     }
