@@ -1,5 +1,6 @@
 using ConsensusScheduler.BizLogic.Abstractions.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -30,7 +31,9 @@ namespace Test.BizLogic.Abstractions
             Assert.Equal(created, poll.CreationDateTime);
             Assert.Equal(due, poll.DueDate);
             Assert.Equal(creator, poll.Creator);
-            Assert.Equal(pollOptions, poll.PollOptions);
+
+            Assert.All(poll.PollOptions, x => Assert.Contains(x, pollOptions));
+            Assert.NotSame(pollOptions, poll.PollOptions);
         }
 
         [Fact]
@@ -106,7 +109,29 @@ namespace Test.BizLogic.Abstractions
             Assert.Equal(poll_origin.CreationDateTime, poll_copied.CreationDateTime);
             Assert.Equal(poll_origin.DueDate, poll_copied.DueDate);
             Assert.Equal(poll_origin.Creator, poll_copied.Creator);
-            Assert.Equal(poll_origin.PollOptions, poll_copied.PollOptions);
+            Assert.All(poll_copied.PollOptions, x => Assert.Contains(x, poll_origin.PollOptions));
+            Assert.NotSame(poll_origin.PollOptions, poll_copied.PollOptions);
+        }
+
+        [Fact]
+        public void ConstructorSortsPollOptions()
+        {
+
+            //arrange
+            var opt1 = new PollOption(Guid.NewGuid(), false, new DateTime(1970, 01, 01, 03, 00, 00), new DateTime(1970, 01, 01, 03, 10, 00), "");
+            var opt2 = new PollOption(Guid.NewGuid(), false, new DateTime(1970, 01, 01, 03, 00, 00), new DateTime(1970, 01, 01, 03, 05, 00), "");
+            var opt3 = new PollOption(Guid.NewGuid(), false, new DateTime(1970, 01, 01, 02, 00, 00), new DateTime(1970, 01, 01, 04, 00, 00), "");
+            var pollOptions = new List<PollOption> { opt1, opt2, opt3 };
+
+            //act
+            Poll poll = new Poll(id: Guid.NewGuid(), subject: "", description: "", creationDateTime: DateTime.Now, dueDate: null, creator: new SchedUser(), pollOptions: pollOptions);
+
+            // assert
+            Assert.Collection(poll.PollOptions,
+                x => Assert.Equal(opt3, x),
+                x => Assert.Equal(opt2, x),
+                x => Assert.Equal(opt1, x)
+                );
         }
     }
 }

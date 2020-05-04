@@ -1,6 +1,7 @@
 ﻿using ConsensusScheduler.BizLogic.Abstractions.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ConsensusScheduler.BizLogic.Abstractions.Models
@@ -41,7 +42,7 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Models
         /// <summary>
         /// Возможные варианты
         /// </summary>
-        public IEnumerable<PollOption> PollOptions { get; }
+        public IReadOnlyCollection<PollOption> PollOptions { get; }
 
         /// <summary>
         /// Конструктор
@@ -61,7 +62,8 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Models
             this.CreationDateTime = creationDateTime;
             this.DueDate = dueDate;
             this.Creator = creator ?? throw new ArgumentNullException(nameof(creator));
-            this.PollOptions = pollOptions ?? throw new ArgumentNullException(nameof(pollOptions));
+            if(pollOptions == null) throw new ArgumentNullException(nameof(pollOptions));
+            this.PollOptions = pollOptions.OrderBy(x => x.Start).ThenBy(x => x.End).ToList();
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Models
             this.CreationDateTime = origin.CreationDateTime;
             this.DueDate = origin.DueDate;
             this.Creator = origin.Creator;
-            this.PollOptions = origin.PollOptions;
+            this.PollOptions = origin.PollOptions.ToList();
         }
     }
 }
