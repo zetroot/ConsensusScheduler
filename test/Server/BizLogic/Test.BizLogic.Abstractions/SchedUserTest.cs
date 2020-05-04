@@ -36,5 +36,21 @@ namespace Test.BizLogic.Abstractions
             Assert.Equal(id, user.ID);
             Assert.Equal(displayName, user.DisplayName);
         }
+
+        [Fact]
+        public void CopyingCtorCreatesCopy()
+        {
+            //arrange
+            var origin = new SchedUser(Guid.NewGuid(), "desc");
+
+            //act
+            var copy = new SchedUser(origin);
+
+            //assert
+            Assert.NotSame(origin, copy);
+
+            Assert.Equal(origin.ID, copy.ID);
+            Assert.Equal(origin.DisplayName, copy.DisplayName);
+        }
     }
 }
