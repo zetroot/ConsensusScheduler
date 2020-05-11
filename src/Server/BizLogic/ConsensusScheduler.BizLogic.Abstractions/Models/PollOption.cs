@@ -4,7 +4,7 @@ using System;
 namespace ConsensusScheduler.BizLogic.Abstractions.Models
 {
     /// <summary>
-    /// Абстрактный базовый класс опции выбора в опросе
+    /// Опция выбора в опросе
     /// </summary>
     public class PollOption : IBizEntity
     {
