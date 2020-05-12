@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -54,7 +53,7 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Interfaces
         /// <param name="cancellationToken">Токен отмены</param>
         /// <returns>Добавленная запись</returns>
         Task<T> AddAsync(T entity, CancellationToken cancellationToken);
-        
+
         /// <summary>
         /// Обновить запись
         /// </summary>
@@ -82,7 +81,7 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Interfaces
         /// <param name="id">Идентификтаор удалемой записи</param>
         /// <param name="cancellationToken">Токен отмены</param>
         Task DeleteAsync(Guid id, CancellationToken cancellationToken);
-        
+
         /// <summary>
         /// Проверить существование записи по идентификатору
         /// </summary>

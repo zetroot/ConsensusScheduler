@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsensusScheduler.BizLogic.Abstractions.Interfaces
 {
     /// <summary>
     /// Интерфейс сущности слоя бизнес-логики
-    /// </summary>
-    [ExcludeFromCodeCoverage]
+    /// </summary>  
     public interface IBizEntity
     {
         /// <summary>
