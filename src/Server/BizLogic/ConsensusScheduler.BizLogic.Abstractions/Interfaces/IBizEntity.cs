@@ -7,6 +7,7 @@ namespace ConsensusScheduler.BizLogic.Abstractions.Interfaces
     /// <summary>
     /// Интерфейс сущности слоя бизнес-логики
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public interface IBizEntity
     {
         /// <summary>
